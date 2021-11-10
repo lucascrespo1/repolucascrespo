@@ -10,7 +10,7 @@ del2=("DEL D:\\TESTE\\dist\\TESTAO\\COMMIT.TXT")
 del3=("DEL D:\\TESTE\\dist\\TESTAO\\CONSULTA.TXT")
 
 txt = ("echo SELECT ID_RECURSO, NOME, LOGIN_ST, EMAIL, ID_FUNCIONARIO, ROWID FROM SPR_RECURSO S WHERE upper(S.nome) like '%")+usuario+("%';>> CONSULTA.TXT")
-comando = ("SQLPLUS fac_star_project/facplan@dbfacil1 @D:\\TESTE\\dist\\TESTAO\\CONSULTA.TXT")
+comando = ("SQLPLUS nomebanco/senhabanco@banco @D:\\TESTE\\dist\\TESTAO\\CONSULTA.TXT")
     
 os.system(txt)
     
@@ -34,10 +34,10 @@ if (menuYES) == True:
     os.system(atualiza)
     commit=("echo commit;>> COMMIT.TXT")
     os.system(commit)
-    atualizasql=("SQLPLUS fac_star_project/facplan@dbfacil1 @D:\\TESTE\\dist\\TESTAO\\ATUALIZA.TXT")
+    atualizasql=("SQLPLUS nomebanco/senhabanco@banco @D:\\TESTE\\dist\\TESTAO\\ATUALIZA.TXT")
     os.system(atualizasql)
     print(subprocess.getoutput(atualizasql))
-    commitsql=("SQLPLUS fac_star_project/facplan@dbfacil1 @D:\\TESTE\\dist\\TESTAO\\COMMIT.TXT")
+    commitsql=("SQLPLUS nomebanco/senhabanco@banco @D:\\TESTE\\dist\\TESTAO\\COMMIT.TXT")
     os.system(commitsql)
     print(subprocess.getoutput(commitsql))
     os.system(comando)
