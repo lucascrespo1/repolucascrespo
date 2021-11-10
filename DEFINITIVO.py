@@ -9,8 +9,8 @@ import sys
 
 print("***************************************")
 print("*                                     *")
-print("*  Criador de usuários DBFACIL3 v1.1  *")
-print("*                        by: crespin  *")
+print("*  Criador de usuários BANCOS v1.1  *")
+print("*                        by: crespo  *")
 print("*                                     *")
 print("***************************************")
 print("\n")
@@ -32,7 +32,7 @@ menu_select = input(str("DIGITE A OPÇÃO DESEJADA: "))
 
 if menu_select == str(1):
     usercreate = input(str("Nome do usuário: ")).upper()
-    print(usercreate+"@dbfacil3\n")
+    print(usercreate+"@banco\n")
     password = input(str("Senha: ")).upper()
     tbs = usercreate+"_TBS"
 
@@ -53,7 +53,7 @@ if menu_select == str(1):
     command12 = ("echo GRANT CREATE PROCEDURE TO ")+usercreate+(";>> import.txt")
     command13 = ("echo GRANT CREATE ANY INDEX TO ")+usercreate+(";>> import.txt")
     command14 = ("echo ALTER USER ")+usercreate+(" QUOTA UNLIMITED ON ")+tbs+("; >> import.txt")
-    command16 = ("SQLPLUS backup/facplan@dbfacil3 @D:\\USERS\\dist\\USERADMIN\\import.txt")
+    command16 = ("SQLPLUS nomebanco/senhabanco@banco @D:\\USERS\\dist\\USERADMIN\\import.txt")
 
     
     if os.system(command1) == 0:
@@ -103,7 +103,7 @@ if menu_select == str(1):
         print(subprocess.getoutput(command16))
     if os.system(command0) == 0:
         print("Executado com sucesso")
-        print("Finalizando programa... TMJ MEUS NOBRE")
+        print("Finalizando programa...")
         
 #CRIADOR DE USUÁRIOS - FIM --------------------------------------------------------------------------    
 
@@ -116,7 +116,7 @@ elif menu_select == str(2):
     userdel = input(str("Digite o usuário a ser dropado: ")).upper()
     commanddeluser = ("echo drop user "+userdel+" cascade;>> delete.txt")
     commanddeltbs = ("echo DROP TABLESPACE "+userdel+"_TBS INCLUDING CONTENTS AND DATAFILES;>> delete.txt ")
-    commanddelsql = ("SQLPLUS backup/facplan@dbfacil3 @D:\\USERS\\dist\\USERADMIN\\delete.txt")
+    commanddelsql = ("SQLPLUS nomebanco/senhabanco@banco @D:\\USERS\\dist\\USERADMIN\\delete.txt")
     
     if os.system(arqdel) == 0:
         print("Executado com sucesso.")
@@ -141,7 +141,7 @@ elif menu_select == str(3):
     dmpexp = input(str("Digite o Nome do DMP que sera gerado: ")).upper()
     logexp = input(str("Digite o Nome do LOG que sera gerado: ")).upper()
 
-    commandexp = ("expdp backup/facplan@dbfacil3 directory=BACKUP_DIR schemas="+basexp+" dumpfile="+dmpexp+".dmp logfile="+logexp+".log consistent=y statistics=none;")
+    commandexp = ("expdp nomebanco/senhabanco@banco directory=BACKUP_DIR schemas="+basexp+" dumpfile="+dmpexp+".dmp logfile="+logexp+".log consistent=y statistics=none;")
     if os.system(commandexp) == 0:
         print("Executado com sucesso.")
         print(subprocess.getoutput(commandexp))
@@ -157,7 +157,7 @@ elif menu_select == str(4):
     logimp = input(str("Digite o Nome do LOG que sera gerado: ")).upper()
     
 
-    commandimp = ("impdp backup/facplan@dbfacil3 directory=BACKUP_DIR dumpfile="+dmpimp+".DMP logfile="+logimp+".LOG remap_schema="+baseimp1+":"+baseimp2+" remap_tablespace="+baseimp1+"_TBS:"+baseimp2+"_TBS remap_tablespace="+baseimp1+"_IDX:"+baseimp2+"_TBS;")
+    commandimp = ("impdp nomebanco/senhabanco@banco directory=BACKUP_DIR dumpfile="+dmpimp+".DMP logfile="+logimp+".LOG remap_schema="+baseimp1+":"+baseimp2+" remap_tablespace="+baseimp1+"_TBS:"+baseimp2+"_TBS remap_tablespace="+baseimp1+"_IDX:"+baseimp2+"_TBS;")
     if os.system(commandimp) == 0:
         print("Executado com sucesso.")
         print(subprocess.getoutput(commandimp))
